@@ -1,3 +1,4 @@
+require('dotenv').config();
 // Importación de las dependencias necesarias
 let mysql = require("mysql2");
 let express = require("express");
@@ -6,7 +7,10 @@ let cors = require("cors");
 // Inicialización de la aplicación Express
 let app = express();
 app.use(cors({
-  origin: process.env.URLFRONTEND || 'https://serene-soul.netlify.app'
+   origin: [
+    'http://127.0.0.1:5500',  // Para trabajo local
+    'https://serene-soul.netlify.app',  // Para producción en Netlify
+  ]
 }
 ));  // Habilita CORS para permitir peticiones desde otros dominios
 app.use(express.json());  // Permite a Express interpretar solicitudes con cuerpo JSON
@@ -19,7 +23,7 @@ function manejarConexion() {
     host:  process.env.DBHOST || "localhost",
     user: process.env.DBUSER || "root",
     password: process.env.DBPASSWORD || "",
-    database: process.env.DB,
+    database: process.env.DB || "serene_soul",
     port: process.env.PORT || 3000
   });
 
