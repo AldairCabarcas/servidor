@@ -125,7 +125,7 @@ app.post("/login", (req, res) => {
 });
 
 // Configuración del servidor para que escuche en el puerto 3000
-const PORT = process.env.PORT || 3306
+const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http ${PORT}`);
 });
